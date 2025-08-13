@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Payment Successful</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            text-align: center;
+            padding-top: 50px;
+            cursor: pointer; /* para que se note que puedes hacer clic */
+        }
+        h1 {
+            color: #228B22; /* Verde oscuro */
+            font-size: 2.5em;
+        }
+        .checkmark {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: inline-block;
+            position: relative;
+            background-color: #4CAF50; /* Verde del check */
+            animation: pop 0.3s ease forwards;
+            margin-top: 40px;
+        }
+        .checkmark::after {
+            content: "";
+            position: absolute;
+            left: 32px;
+            top: 32px;
+            width: 25px;
+            height: 50px;
+            border-right: 5px solid white;
+            border-bottom: 5px solid white;
+            transform: rotate(45deg);
+            animation: draw 0.5s ease forwards;
+            animation-delay: 0.3s;
+            opacity: 0;
+        }
+        @keyframes draw {
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes pop {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Payment Successful</h1>
+    <div class="checkmark"></div>
+
+    <audio id="success-sound" src="https://www.soundjay.com/buttons/sounds/button-3.mp3" preload="auto"></audio>
+
+    <script>
+        const audio = document.getElementById('success-sound');
+
+        // Reproducir sonido solo al primer clic en cualquier parte de la página
+        function playSoundOnClick() {
+            audio.play();
+            // Quitamos el evento para que no suene más de una vez
+            document.body.removeEventListener('click', playSoundOnClick);
+        }
+
+        document.body.addEventListener('click', playSoundOnClick);
+    </script>
+</body>
+</html>
